@@ -35,7 +35,9 @@ const User = mongoose.model("user", itemsSchema2);
     res.redirect('/')
   });
 
-app.listen(3000,function(){
+const port=process.env.PORT || 3000
+
+app.listen(port,function(){
     console.log("connected to the port 3000")
 })
 
