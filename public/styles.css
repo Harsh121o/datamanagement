@@ -1,0 +1,26 @@
+
+body {
+    background-color: #e5edf4;
+  }
+  
+  /* .centered {
+      padding-top: 200px;
+      text-align: center;
+  }
+  
+  .secret-text {
+    text-align: center;
+    font-size: 2rem;
+    color: #fff;
+    background-color: #000;
+  } */
+
+  table, th, td {
+    border: 1px solid;
+  }
+
+  .formg,.formg2 {
+    padding: 25px;
+    margin-top: 5px;
+  }
+  
