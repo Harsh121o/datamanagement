@@ -7,6 +7,7 @@ app.use(bodyParser.urlencoded({
     extended:true
 }))
 app.set('view engine','ejs')
+app.use(express.static("public"))
 
 mongoose.connect('mongodb+srv://Harsh:test123@cluster0.iqn1prm.mongodb.net/guptaopticals', {useNewUrlParser: true});
 app.get("/",function(req,res){

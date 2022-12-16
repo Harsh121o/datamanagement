@@ -1,13 +1,17 @@
 <%- include('partials/header') %>
 
+<link rel="stylesheet" href="styles.css">
 
-<form action="/" method="POST">
-    <label for="fname">First name:</label><br>
+
+<form action="/" method="POST" id="form1">
+    <div class="box1">
+    <label for="fname"><b>First name:</b></label><br>
     <input type="text" id="fname" name="name"><br>
-    <label for="lname">Mobile</label><br>
+    <label for="lname"><b>Mobile</b></label><br>
     <input type="number" id="lname" name="Mobile">
-
-      <table>
+    </div>
+    <div style="overflow-x:auto;">      
+        <table class="table">
           <tr>
               <th></th>
               <th>SPH</th>
@@ -58,9 +62,9 @@
       </table>
       </div>
       
-      <div class="formg2">
+      <div style="overflow-x:auto;">
       
-      <table>
+      <table class="table">
           <tr>
               
               <th>S. No.</th>
@@ -89,8 +93,7 @@
           
       </table>
       </div>
-      
-      <input type="submit" id="btn-submit">
+      <button class="btn btn-primary" type="submit">Button</button>
       
       
   </form>
