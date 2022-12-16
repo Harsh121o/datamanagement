@@ -24,6 +24,7 @@ const itemsSchema2 = new mongoose.Schema({
 
 const User = mongoose.model("user", itemsSchema2);
   app.post("/", function(req, res){
+    console.log(req.body)
     const user=new User({
         Name: req.body.name,
         Mobile:req.body.Mobile,
@@ -34,6 +35,15 @@ const User = mongoose.model("user", itemsSchema2);
     user.save()
     res.redirect('/')
   });
+
+
+  app.post("/search", function(req, res){
+    console.log(req.body)
+    const search= req.body.Search
+    User.find({Name:{$regex:search,$options:'$i'}}).then(data=>{res.send(data)})
+    // res.render("search")
+  });
+
 
 const port=process.env.PORT || 3000
 
