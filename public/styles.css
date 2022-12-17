@@ -37,4 +37,23 @@ body {
     color: #2F3C7E;
 
   }
+
+  /* zebra striping */
+
+
+
+tbody tr:nth-child(even) {
+  background-color: #eccbdd;
+}
+
+
+
+table {
+  background-color: #ff33cc;
+}
+
+.form2table{
+  margin-bottom: 100px;
+}
+
   

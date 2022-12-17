@@ -27,74 +27,81 @@
                   <input type="text" name="Right_SPH" >
               </td>
               <td>
-                  <input type="text" name="company" >
+                  <input type="text" name="Right_CYL" >
               </td>
               <td>
-                  <input type="text" name="company" >
+                  <input type="text" name="Right_AXIS" >
               </td>
               <td>
-                  <input type="text" name="company" >
+                  <input type="text" name="Right_ADD" >
               </td>
               <td>
-                  <input type="text" name="company" >
+                  <input type="text" name="Right_VISION" >
               </td>
           </tr>
       
           <tr>
               <TD><b>Left  </b></TD>
               <td>
-                  <input type="text" name="company" >
+                  <input type="text" name="Left_SPH" >
               </td>
               <td>
-                  <input type="text" name="company" >
+                  <input type="text" name="Left_CYL" >
               </td>
               <td>
-                  <input type="text" name="company" >
+                  <input type="text" name="Left_AXIS" >
               </td>
               <td>
-                  <input type="text" name="company" >
+                  <input type="text" name="Left_ADD" >
               </td>
               <td>
-                  <input type="text" name="company" >
+                  <input type="text" name="Left_VISION" >
               </td>
           </tr>
       </table>
       </div>  
       <div style="overflow-x:auto;" id="table">   
       <table class="table">
-          <tr>        
-              <th>S. No.</th>
-              <th>Items</th>
-              <th>Items Description</th>
-              <th>Qty.</th>
-              <th>Total</th>
-          </tr>
-          <tr>
-              <td>
-                  1
-              </td>
-              <td>
-                  <input type="text" name="company" >
-              </td>
-              <td>
-                  <input type="text" name="company" >
-              </td>
-              <td>
-                  <input type="text" name="company" >
-              </td>
-              <td>
-                  <input type="text" name="company" >
-              </td>
-          </tr>      
-          
+        
+            <tr>        
+                <th>S. No.</th>
+                <th>Items</th>
+                <th>Items Description</th>
+                <th>Qty.</th>
+                <th>Total</th>
+            </tr>
+            <% for(let i=0;i<newlength;i++){ %>
+            <tr>
+                <td>
+                    
+                    <%= i+1%>
+                </td>
+                <td>
+                    <input type="text" name="company" >
+                </td>
+                <td>
+                    <input type="text" name="company" >
+                </td>
+                <td>
+                    <input type="text" name="company" >
+                </td>
+                <td>
+                    <input type="text" name="company" >
+                </td>
+            </tr>
+        <% } %>                 
       </table>
       </div>
       <!-- <form action="/submit" method="POST"> -->
     
-      <button id="list">+</button><br>
-      <button class="btn btn-primary" type="submit">Button</button>
+      <button class="btn btn-primary" type="submit">Button</button><br>
       
       
+  </form>
+
+  <form method="POST" action='plus'>
+
+    <button id="list">+</button><br>
   </form>
 
   <script src="dynamic.js"></script>

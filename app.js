@@ -8,11 +8,15 @@ app.use(bodyParser.urlencoded({
 }))
 app.set('view engine','ejs')
 app.use(express.static("public"))
+let length=1
 
 mongoose.connect('mongodb+srv://Harsh:test123@cluster0.iqn1prm.mongodb.net/guptaopticals', {useNewUrlParser: true});
 app.get("/",function(req,res){
-    res.render("form")
+    res.render("form",{newlength:length})
+    alert(length)
 })
+
+
 
 const itemsSchema2 = new mongoose.Schema({
     Name: String,
@@ -24,10 +28,11 @@ const itemsSchema2 = new mongoose.Schema({
     Right_AXIS: String,
     Right_ADD: String,
     Right_VISION: String,
-    Right_SPH: String,
-    Right_CYL: String,
-    Right_ADD: String,
-    Right_VISION: String,
+    Left_SPH: String,
+    Left_CYL: String,
+    Left_Axis: String,
+    Left_ADD: String,
+    Left_VISION: String,
     Items: String,
     Items_Description: String,
     Qty: Number,
@@ -42,7 +47,16 @@ const User = mongoose.model("user", itemsSchema2)
         Mobile:req.body.Mobile,
         Address: req.body.Address,
         Date: req.body.Date,
-        // Right_SPH: req.body.Right_SPH
+        Right_SPH: req.body.Right_SPH,
+        Right_CYL: req.body.Right_CYL,
+        Right_AXIS: req.body.Right_AXIS,
+        Right_ADD: req.body.Right_ADD,
+        Right_VISION: req.body.Right_VISION,
+        Left_SPH: req.body.Left_SPH,
+        Left_CYL: req.body.Left_CYL,
+        Left_Axis: req.body.Left_Axis,
+        Left_ADD: req.body.Left_ADD,
+        Left_VISION: req.body.Left_VISION
     })
     user.save()
     res.redirect('/')
@@ -60,18 +74,10 @@ const User = mongoose.model("user", itemsSchema2)
       res.render("form2",{newlist:data})
     })
   })
-  let length=1
-
-  app.post("/submit", function(req, res){
+  app.post("/plus", function(req, res){
     length=length+1
-
-    
-    
+    res.redirect("/")
   });
-
-  
-
-
 const port=process.env.PORT || 3000
 
 app.listen(port,function(){

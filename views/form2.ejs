@@ -1,6 +1,8 @@
 <%- include('partials/header') %>
-<% for(let i=0;i<newlist.length;i++){ %>
 <link rel="stylesheet" href="styles.css">
+<h3>Hi Dr Ayush</h3>
+<% for(let i=0;i<newlist.length;i++){ %>
+    <h4 ><%= newlist[i].Name %></h4><br>
 <form id="form2">
     <div class="box1">
           
@@ -22,38 +24,38 @@
           <tr>
               <TD><b>Right  </b></TD>
               <td>
-                  <input type="text" name="Right_SPH" >
+                <%= newlist[i].Right_SPH %>
               </td>
               <td>
-                  <input type="text" name="company" >
+                  <%= newlist[i].Right_CYL %>
               </td>
               <td>
-                  <input type="text" name="company" >
+                  <%= newlist[i].Right_AXIS %>
               </td>
               <td>
-                  <input type="text" name="company" >
+                  <%= newlist[i].Right_ADD %>
               </td>
               <td>
-                  <input type="text" name="company" >
+                  <%= newlist[i].Right_VISION %>
               </td>
           </tr>
       
           <tr>
               <TD><b>Left  </b></TD>
               <td>
-                  <input type="text" name="company" >
+                  <%= newlist[i].Left_SPH %>
               </td>
               <td>
-                  <input type="text" name="company" >
+                  <%= newlist[i].Left_CYL %>
               </td>
               <td>
-                  <input type="text" name="company" >
+                  <%= newlist[i].Left_AXIS %>
               </td>
               <td>
-                  <input type="text" name="company" >
+                  <%= newlist[i].Left_ADD %>
               </td>
               <td>
-                  <input type="text" name="company" >
+                  <%= newlist[i].Left_VISION %>
               </td>
           </tr>
               
@@ -61,7 +63,7 @@
       </table>
       </div>
       
-      <div style="overflow-x:auto;">
+      <div style="overflow-x:auto;" class="form2table">
       
       <table class="table">
           <tr>
