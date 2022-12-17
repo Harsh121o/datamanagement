@@ -2,21 +2,31 @@ const express=require("express")
 const bodyParser=require("body-parser")
 const ejs=require("ejs")
 const app=express()
+var path = require('path')
 const mongoose=require("mongoose")
+const multer  = require('multer')
+var storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, 'uploads')
+  },
+  filename: (req, file, cb) => {
+      cb(null, file.fieldname + '-' + Date.now())
+  }
+});
+
+var upload = multer({ storage: storage })
+var fs = require('fs')
+
 app.use(bodyParser.urlencoded({
     extended:true
 }))
 app.set('view engine','ejs')
 app.use(express.static("public"))
 let length=1
-
 mongoose.connect('mongodb+srv://Harsh:test123@cluster0.iqn1prm.mongodb.net/guptaopticals', {useNewUrlParser: true});
 app.get("/",function(req,res){
     res.render("form",{newlength:length})
-    alert(length)
 })
-
-
 
 const itemsSchema2 = new mongoose.Schema({
     Name: String,
@@ -38,6 +48,55 @@ const itemsSchema2 = new mongoose.Schema({
     Qty: Number,
     Total: Number
 });
+
+const imagesschema = new mongoose.Schema({
+  name:
+    String,
+   
+  image:{
+    data:Buffer,
+    contentType: String
+  }
+  
+});
+
+const Image = mongoose.model("image", imagesschema)
+
+app.post('/stats',upload.single('avatar'),(req,res)=>{
+      const obj=({
+        name:req.body.name,
+        image:{
+          data:fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+          contentType:'image/png'
+        }
+      })
+      Image.create(obj, (err, item) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            item.save();
+            res.redirect('/');
+        }})
+      // res.redirect("/about")
+    })
+  // })
+
+
+  app.get('/show', (req, res) => {
+    Image.find({}, (err, items) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send('An error occurred', err);
+        }
+        else {
+            res.render('images', { items: items });
+        }
+    });
+});
+  
+
+
 
 
 const User = mongoose.model("user", itemsSchema2)
