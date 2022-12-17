@@ -37,12 +37,19 @@ const User = mongoose.model("user", itemsSchema2);
     res.redirect('/')
   });
 
+  app.get("/search",function(req,res){
+    res.render("search")
+  })
+
 
   app.post("/search", function(req, res){
-    console.log(req.body)
+    
     const search= req.body.Search
-    User.find({Name:{$regex:search,$options:'$i'}}).then(data=>{res.send(data)})
-    // res.render("search")
+    User.find({Name:{$regex:search,$options:'$i'}},function(err,data){
+      res.render("search",{newlist:data})
+    })
+ 
+  
   });
 
 
