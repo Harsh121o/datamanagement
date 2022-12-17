@@ -19,23 +19,34 @@ const itemsSchema2 = new mongoose.Schema({
     Mobile:Number,
     Address: String,
     Date: Date,
-    Right_SPH: String  
+    Right_SPH: String,
+    Right_CYL: String,
+    Right_AXIS: String,
+    Right_ADD: String,
+    Right_VISION: String,
+    Right_SPH: String,
+    Right_CYL: String,
+    Right_ADD: String,
+    Right_VISION: String,
+    Items: String,
+    Items_Description: String,
+    Qty: Number,
+    Total: Number
 });
 
 
-const User = mongoose.model("user", itemsSchema2);
+const User = mongoose.model("user", itemsSchema2)
   app.post("/", function(req, res){
-    console.log(req.body)
     const user=new User({
-        Name: req.body.name,
+        Name: req.body.Name,
         Mobile:req.body.Mobile,
-        // Address: req.body.Address,
-        // Date: req.body.Date,
-        Right_SPH: req.body.Right_SPH
+        Address: req.body.Address,
+        Date: req.body.Date,
+        // Right_SPH: req.body.Right_SPH
     })
     user.save()
     res.redirect('/')
-  });
+  })
 
   app.get("/search",function(req,res){
     res.render("search")
@@ -46,11 +57,19 @@ const User = mongoose.model("user", itemsSchema2);
     
     const search= req.body.Search
     User.find({Name:{$regex:search,$options:'$i'}},function(err,data){
-      res.render("search",{newlist:data})
+      res.render("form2",{newlist:data})
     })
- 
-  
+  })
+  let length=1
+
+  app.post("/submit", function(req, res){
+    length=length+1
+
+    
+    
   });
+
+  
 
 
 const port=process.env.PORT || 3000

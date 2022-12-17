@@ -1,15 +1,13 @@
 <%- include('partials/header') %>
+<% for(let i=0;i<newlist.length;i++){ %>
 <link rel="stylesheet" href="styles.css">
-<form action="/" method="POST" id="form1">
+<form id="form2">
     <div class="box1">
-    <label for="fname"><b>First name:</b></label><br>
-    <input type="text" id="fname" name="Name"><br>
-    <label for="lname"><b>Mobile</b></label><br>
-    <input type="number" id="lname" name="Mobile"><br>
-    <label for="fname"><b>Date</b></label><br>
-    <input type="date" id="date" name="Date"><br>
-    <label for="lname"><b>Address</b></label><br>
-    <input type="text" id="address" name="Address">
+          
+    <label for="fname"><b>First name:</b>    <%= newlist[i].Name %></label><br>
+    <label for="lname"><b>Mobile:</b>     <%= newlist[i].Mobile %></label><br>
+    <label for="fname"><b>Date:</b>    <%= newlist[i].Date %></label><br>
+    <label for="lname"><b>Address:</b>     <%= newlist[i].Address %></label><br>
     </div>
     <div style="overflow-x:auto;">      
         <table class="table">
@@ -58,20 +56,25 @@
                   <input type="text" name="company" >
               </td>
           </tr>
+              
+          
       </table>
-      </div>  
-      <div style="overflow-x:auto;" id="table">   
+      </div>
+      
+      <div style="overflow-x:auto;">
+      
       <table class="table">
-          <tr>        
+          <tr>
+              
               <th>S. No.</th>
               <th>Items</th>
               <th>Items Description</th>
               <th>Qty.</th>
               <th>Total</th>
-          </tr>
+          </tr>a
           <tr>
               <td>
-                  1
+                  <input type="text" name="company" >
               </td>
               <td>
                   <input type="text" name="company" >
@@ -89,12 +92,7 @@
           
       </table>
       </div>
-      <!-- <form action="/submit" method="POST"> -->
-    
-      <button id="list">+</button><br>
-      <button class="btn btn-primary" type="submit">Button</button>
+     
       
-      
+      <% } %>
   </form>
-
-  <script src="dynamic.js"></script>
