@@ -70,26 +70,23 @@
                 <th>Qty.</th>
                 <th>Total</th>
             </tr>
-            <% for(let i=0;i<newlength;i++){ %>
             <tr>
                 <td>
                     
-                    <%= i+1%>
                 </td>
                 <td>
-                    <input type="text" name="company" >
+                    <input type="text" name="Items" >
                 </td>
                 <td>
-                    <input type="text" name="company" >
+                    <input type="text" name="Description" >
                 </td>
                 <td>
-                    <input type="text" name="company" >
+                    <input type="text" name="Qty" >
                 </td>
                 <td>
-                    <input type="text" name="company" >
+                    <input type="text" name="Total" >
                 </td>
             </tr>
-        <% } %>                 
       </table>
       </div>
       <!-- <form action="/submit" method="POST"> -->
@@ -99,9 +96,5 @@
       
   </form>
 
-  <form method="POST" action='plus'>
-
-    <button id="list">+</button><br>
-  </form>
 
   <script src="dynamic.js"></script>

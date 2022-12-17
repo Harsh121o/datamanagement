@@ -34,7 +34,7 @@ const itemsSchema2 = new mongoose.Schema({
     Left_ADD: String,
     Left_VISION: String,
     Items: String,
-    Items_Description: String,
+    Description: String,
     Qty: Number,
     Total: Number
 });
@@ -56,11 +56,21 @@ const User = mongoose.model("user", itemsSchema2)
         Left_CYL: req.body.Left_CYL,
         Left_Axis: req.body.Left_Axis,
         Left_ADD: req.body.Left_ADD,
-        Left_VISION: req.body.Left_VISION
+        Left_VISION: req.body.Left_VISION,
+        Items:req.body.Items,
+        Description:req.body.Description,
+        Qty:req.body.Qty,
+        Total:req.body.Total
+
     })
     user.save()
     res.redirect('/')
   })
+
+  app.get("/about",function(req,res){
+    res.render("about")
+  })
+
 
   app.get("/search",function(req,res){
     res.render("search")
@@ -74,10 +84,7 @@ const User = mongoose.model("user", itemsSchema2)
       res.render("form2",{newlist:data})
     })
   })
-  app.post("/plus", function(req, res){
-    length=length+1
-    res.redirect("/")
-  });
+  
 const port=process.env.PORT || 3000
 
 app.listen(port,function(){
