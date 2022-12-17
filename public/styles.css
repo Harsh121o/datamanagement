@@ -1,20 +1,8 @@
 
 body {
     background-color: #2F3C7E;
+    font-family: verdana,sans-serif;
   }
-  
-  /* .centered {
-      padding-top: 200px;
-      text-align: center;
-  }
-  
-  .secret-text {
-    text-align: center;
-    font-size: 2rem;
-    color: #fff;
-    background-color: #000;
-  } */
-
   table, th, td {
     border: 1px solid;
   }
@@ -64,5 +52,15 @@ h4{
 h3{
   color:#eccbdd
 }
+
+.btn-primary{
+  font-size: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: #eccbdd;
+  color:#2F3C7E
+  
+}
+
 
   
