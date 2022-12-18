@@ -8,10 +8,13 @@ const multer  = require('multer')
 
 let tempraryImageDirectory="";
   if (process.env.DEV && process.env.DEV === 'Yes') {
-    tempraryImageDirectory = path.join(__dirname, './public/uploads');
+    tempraryImageDirectory = path.join(__dirname+'/public/uploads');
+    
   } else {
     tempraryImageDirectory = './public/uploads';
   }
+
+  
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
       cb(null, tempraryImageDirectory)
@@ -33,6 +36,7 @@ app.set('view engine','ejs')
 let length=1
 mongoose.connect('mongodb+srv://Harsh:test123@cluster0.iqn1prm.mongodb.net/guptaopticals', {useNewUrlParser: true});
 app.get("/",function(req,res){
+  console.log(path.join(__dirname+'/public/uploads'))
     res.render("form",{newlength:length})
 })
 
