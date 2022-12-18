@@ -5,9 +5,16 @@ const app=express()
 var path = require('path')
 const mongoose=require("mongoose")
 const multer  = require('multer')
+
+let tempraryImageDirectory="";
+  if (process.env.DEV && process.env.DEV === 'Yes') {
+    tempraryImageDirectory = path.join(__dirname, './public/uploads');
+  } else {
+    tempraryImageDirectory = './public/uploads';
+  }
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
-      cb(null, './public/uploads')
+      cb(null, tempraryImageDirectory)
   },
   filename: (req, file, cb) => {
       cb(null, file.fieldname + '-' + Date.now()+path.extname(file.originalname))
@@ -147,6 +154,8 @@ const User = mongoose.model("user", itemsSchema2)
       res.render("form2",{newlist:data})
     })
   })
+
+  
   
 const port=process.env.PORT || 3000
 
