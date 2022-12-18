@@ -43,7 +43,7 @@ const itemsSchema2 = new mongoose.Schema({
     Name: String,
     Mobile:Number,
     Address: String,
-    Date: Date,
+    Date: String,
     Right_SPH: String,
     Right_CYL: String,
     Right_AXIS: String,
@@ -116,7 +116,7 @@ const User = mongoose.model("user", itemsSchema2)
         Name: req.body.Name,
         Mobile:req.body.Mobile,
         Address: req.body.Address,
-        Date: req.body.Date,
+        Date: req.body.date,
         Right_SPH: req.body.Right_SPH,
         Right_CYL: req.body.Right_CYL,
         Right_AXIS: req.body.Right_AXIS,
@@ -141,20 +141,32 @@ const User = mongoose.model("user", itemsSchema2)
     res.render("about")
   })
 
+  app.get("/posts/:topic",function(req,res){
+    
+    User.find({Mobile:req.params.topic},function(err,data){
+      res.render("form2",{newlist:data})
+    })
+  })
+
 
   app.get("/search",function(req,res){
     res.render("search")
   })
+  app.get("/list",function(req,res){
+    res.render("list")
+  })
   app.get("/r",function(req,res){
+    
     res.render("r")
   })
+
 
 
   app.post("/search", function(req, res){
     
     const search= req.body.Search
     User.find({Name:{$regex:search,$options:'$i'}},function(err,data){
-      res.render("form2",{newlist:data})
+      res.render("list",{newlist:data})
     })
   })
 
