@@ -7,10 +7,10 @@ const mongoose=require("mongoose")
 const multer  = require('multer')
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
-      cb(null, 'uploads')
+      cb(null, './public/uploads')
   },
   filename: (req, file, cb) => {
-      cb(null, file.fieldname + '-' + Date.now())
+      cb(null, file.fieldname + '-' + Date.now()+path.extname(file.originalname))
   }
 });
 
@@ -20,8 +20,9 @@ var fs = require('fs')
 app.use(bodyParser.urlencoded({
     extended:true
 }))
-app.set('view engine','ejs')
+
 app.use(express.static("public"))
+app.set('view engine','ejs')
 let length=1
 mongoose.connect('mongodb+srv://Harsh:test123@cluster0.iqn1prm.mongodb.net/guptaopticals', {useNewUrlParser: true});
 app.get("/",function(req,res){
@@ -64,9 +65,9 @@ const Image = mongoose.model("image", imagesschema)
 
 app.post('/stats',upload.single('avatar'),(req,res)=>{
       const obj=({
-        name:req.body.name,
+        name:req.file.filename,
         image:{
-          data:fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+          data:fs.readFileSync(path.join(__dirname + '/public/uploads/' + req.file.filename)),
           contentType:'image/png'
         }
       })
@@ -76,14 +77,14 @@ app.post('/stats',upload.single('avatar'),(req,res)=>{
         }
         else {
             item.save();
-            res.redirect('/');
+            res.redirect('/about');
         }})
       // res.redirect("/about")
     })
   // })
 
 
-  app.get('/show', (req, res) => {
+  app.get('/images', (req, res) => {
     Image.find({}, (err, items) => {
         if (err) {
             console.log(err);
@@ -133,6 +134,9 @@ const User = mongoose.model("user", itemsSchema2)
 
   app.get("/search",function(req,res){
     res.render("search")
+  })
+  app.get("/r",function(req,res){
+    res.render("r")
   })
 
 

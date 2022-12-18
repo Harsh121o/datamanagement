@@ -71,5 +71,34 @@ img {
   width:50px
 }
 
+#imgs{
+  width: 200px;
+  height: auto;
+
+}
+
+.icon{
+  width:50px;
+  height:auto;
+  margin:10px
+}
+.icon1{
+  position: relative;
+  display:inline-block;
+
+}
+
+.icon2{
+  left:300px;
+  display:inline-block;
+}
+
+button{
+  margin:10px
+}
+input{
+  margin:10px
+}
+
 
   
