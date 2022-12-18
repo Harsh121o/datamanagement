@@ -155,23 +155,53 @@ const User = mongoose.model("user", itemsSchema2)
   app.get("/list",function(req,res){
     res.render("list")
   })
-  app.get("/r",function(req,res){
-    
-    res.render("r")
-  })
-
-
-
+  
   app.post("/search", function(req, res){
     
     const search= req.body.Search
+    User.find(  { Mobile:search } ,function(err,data){
+      // console.log(data)
+      res.render("list",{newlist:data})
+    }) 
+    // User.find({Name:{$regex:search,$options:'$i'}},function(err,data){
+    //   res.render("list",{newlist:data})
+    // })
+  })
+  app.post("/search2", function(req, res){
+    
+    const search= req.body.Search
+     
     User.find({Name:{$regex:search,$options:'$i'}},function(err,data){
       res.render("list",{newlist:data})
     })
   })
 
-  
-  
+
+  app.get("/delete/:topic", function(req, res){
+   var result=User.deleteOne({ Mobile: req.params.topic },function(err){
+    if(err){
+      console.log(err)
+    }
+    else{
+      // console.log(result)
+      res.redirect('/')
+    }
+   })
+  })
+
+  // app.delete("/delete",function(req,res){
+  //     const query = { Mobile: req.body.params };
+  //  User.deleteMany(query,function(err){
+  //   if(err){
+  //     console.log(error)
+  //   }
+  //   else{
+  //     res.redirect('/')
+  //   }
+  //  });
+
+  // })
+
 const port=process.env.PORT || 3000
 
 app.listen(port,function(){
