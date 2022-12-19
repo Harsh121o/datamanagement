@@ -177,8 +177,8 @@ const User = mongoose.model("user", itemsSchema2)
   })
 
 
-  app.get("/delete/:topic", function(req, res){
-   var result=User.deleteOne({ Mobile: req.params.topic },function(err){
+  app.get("/delete/:topic/:name", function(req, res){
+   var result=User.deleteOne({ Mobile: req.params.topic,Name:req.params.name },function(err){
     if(err){
       console.log(err)
     }
