@@ -2,10 +2,11 @@
 <link rel="stylesheet" href="styles.css">
 <form action="/" method="POST" id="form1">
     <div class="box1">
+    <h3 style="color: black;text-align: right;"><%= number%></h3>
     <label for="fname"><b>First name:</b></label><br>
     <input type="text" id="fname" name="Name"><br>
-    <label for="lname"><b>Mobile</b></label><br>
-    <input type="number" id="lname" name="Mobile"><br>
+    <label for="lname"><b>Mobile *</b></label><br>
+    <input required type="number" id="lname" name="Mobile"><br>
     <label for="fname"><b>Date</b></label><br>
     <input type="date" id="date" name="date"><br>
     <label for="lname"><b>Address</b></label><br>
@@ -65,7 +66,7 @@
       <table class="table">
         
             <tr>        
-                <th>S. No.</th>
+                <th>S.No</th>
                 <th>Items</th>
                 <th>Items Description</th>
                 <th>Qty.</th>
@@ -73,7 +74,7 @@
             </tr>
             <tr>
                 <td>
-                    1
+                    <input type="text" name="Sno" size="2">
                 </td>
                 <td>
                     <input type="text" name="Items" >

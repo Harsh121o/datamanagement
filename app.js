@@ -5,6 +5,7 @@ const app=express()
 var path = require('path')
 const mongoose=require("mongoose")
 const multer  = require('multer')
+var number=0
 
 let tempraryImageDirectory=""
 if (process.env.DEV && process.env.DEV === 'Yes') {
@@ -12,8 +13,6 @@ if (process.env.DEV && process.env.DEV === 'Yes') {
 } else {
   tempraryImageDirectory = './public/uploads';
 }
-
-
   
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -36,10 +35,11 @@ app.set('view engine','ejs')
 let length=1
 mongoose.connect('mongodb+srv://Harsh:test123@cluster0.iqn1prm.mongodb.net/guptaopticals', {useNewUrlParser: true});
 app.get("/",function(req,res){
-    res.render("form",{newlength:length})
+    res.render("form",{newlength:length,number:number})
 })
 
 const itemsSchema2 = new mongoose.Schema({
+   Sno:Number,
     Name: String,
     Mobile:Number,
     Address: String,
@@ -89,10 +89,7 @@ app.post('/stats',upload.single('avatar'),(req,res)=>{
             item.save();
             res.redirect('/about');
         }})
-      // res.redirect("/about")
     })
-  // })
-
 
   app.get('/images', (req, res) => {
     Image.find({}, (err, items) => {
@@ -105,14 +102,14 @@ app.post('/stats',upload.single('avatar'),(req,res)=>{
         }
     });
 });
-  
-
-
-
 
 const User = mongoose.model("user", itemsSchema2)
+
   app.post("/", function(req, res){
+    number=number+1
+    console.log(number)
     const user=new User({
+      Sno:req.body.Sno,
         Name: req.body.Name,
         Mobile:req.body.Mobile,
         Address: req.body.Address,
@@ -141,13 +138,17 @@ const User = mongoose.model("user", itemsSchema2)
     res.render("about")
   })
 
-  app.get("/posts/:topic",function(req,res){
-    
+  app.get("/posts/:topic",function(req,res){  
     User.find({Mobile:req.params.topic},function(err,data){
-      res.render("form2",{newlist:data})
+      if(err){
+        res.render("incorrect")
+      }
+      else{
+        res.render("form2",{newlist:data,number:number})
+      }
+      
     })
   })
-
 
   app.get("/search",function(req,res){
     res.render("search")
@@ -160,12 +161,8 @@ const User = mongoose.model("user", itemsSchema2)
     
     const search= req.body.Search
     User.find(  { Mobile:search } ,function(err,data){
-      // console.log(data)
       res.render("list",{newlist:data})
     }) 
-    // User.find({Name:{$regex:search,$options:'$i'}},function(err,data){
-    //   res.render("list",{newlist:data})
-    // })
   })
   app.post("/search2", function(req, res){
     
@@ -183,24 +180,10 @@ const User = mongoose.model("user", itemsSchema2)
       console.log(err)
     }
     else{
-      // console.log(result)
       res.redirect('/')
     }
    })
   })
-
-  // app.delete("/delete",function(req,res){
-  //     const query = { Mobile: req.body.params };
-  //  User.deleteMany(query,function(err){
-  //   if(err){
-  //     console.log(error)
-  //   }
-  //   else{
-  //     res.redirect('/')
-  //   }
-  //  });
-
-  // })
 
 const port=process.env.PORT || 3000
 
