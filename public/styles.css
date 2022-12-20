@@ -16,6 +16,7 @@ body {
   #form1 {
     padding: 25px;
     
+    
   }
   .box1{
     padding: 10px;
@@ -111,10 +112,18 @@ input{
   padding: 25px;
 }
 
+div{
+  box-shadow: 2px 2px 2px white;
+}
 
-
-.navbar navbar-expand-lg navbar-light bg-light{
-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);}
+.main{
+  width: 50px;
+  position: relative;
+  transition: transform 4s;
+  transform: rotate3d(1, 1, 1, 45deg);
+  
+  
+}
 
 
 
