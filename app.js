@@ -5,23 +5,12 @@ const app=express()
 var path = require('path')
 const mongoose=require("mongoose")
 const multer  = require('multer')
+const session=require("express-session")
+const passport=require("passport")
+const passportLocalMongoose=require("passport-local-mongoose")
 var number=0
-
 let tempraryImageDirectory=""
-if (process.env.DEV && process.env.DEV === 'Yes') {
-  tempraryImageDirectory = path.join(__dirname, `../../tmp/`);
-} else {
-  tempraryImageDirectory = './public/uploads';
-}
-  
-var storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-      cb(null, tempraryImageDirectory)
-  },
-  filename: (req, file, cb) => {
-      cb(null, file.fieldname + '-' + Date.now()+path.extname(file.originalname))
-  }
-});
+
 
 var upload = multer({ storage: storage })
 var fs = require('fs')
@@ -32,14 +21,21 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static("public"))
 app.set('view engine','ejs')
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+}))
+app.use(passport.initialize())
+app.use(passport.session())
 let length=1
 mongoose.connect('mongodb+srv://Harsh:test123@cluster0.iqn1prm.mongodb.net/guptaopticals', {useNewUrlParser: true});
-app.get("/",function(req,res){
-    res.render("form",{newlength:length,number:number})
-})
+
+// mongoose.set("useCreateIndex",true)
 
 const itemsSchema2 = new mongoose.Schema({
-   Sno:Number,
+   SNo:Number,
     Name: String,
     Mobile:Number,
     Address: String,
@@ -60,6 +56,8 @@ const itemsSchema2 = new mongoose.Schema({
     Total: Number
 });
 
+itemsSchema2.plugin(passportLocalMongoose)
+
 const imagesschema = new mongoose.Schema({
   name:
     String,
@@ -72,6 +70,25 @@ const imagesschema = new mongoose.Schema({
 });
 
 const Image = mongoose.model("image", imagesschema)
+
+if (process.env.DEV && process.env.DEV === 'Yes') {
+  tempraryImageDirectory = path.join(__dirname, `../../tmp/`);
+} else {
+  tempraryImageDirectory = './public/uploads';
+}
+  
+var storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, tempraryImageDirectory)
+  },
+  filename: (req, file, cb) => {
+      cb(null, file.fieldname + '-' + Date.now()+path.extname(file.originalname))
+  }
+});
+
+app.get("/",function(req,res){
+  res.render("form",{newlength:length,number:number})
+})
 
 app.post('/stats',upload.single('avatar'),(req,res)=>{
       const obj=({
@@ -105,11 +122,16 @@ app.post('/stats',upload.single('avatar'),(req,res)=>{
 
 const User = mongoose.model("user", itemsSchema2)
 
+passport.use(User.createStrategy());
+// use static serialize and deserialize of model for passport session support
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
   app.post("/", function(req, res){
     number=number+1
     console.log(number)
     const user=new User({
-      Sno:req.body.Sno,
+      SNo:req.body.SNo,
         Name: req.body.Name,
         Mobile:req.body.Mobile,
         Address: req.body.Address,
@@ -138,8 +160,8 @@ const User = mongoose.model("user", itemsSchema2)
     res.render("about")
   })
 
-  app.get("/posts/:topic",function(req,res){  
-    User.find({Mobile:req.params.topic},function(err,data){
+  app.get("/posts/:topic/:name",function(req,res){  
+    User.find({Mobile:req.params.topic,Name:req.params.name},function(err,data){
       if(err){
         res.render("incorrect")
       }

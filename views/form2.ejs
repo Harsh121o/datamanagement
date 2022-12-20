@@ -4,7 +4,7 @@
     <h4><%= newlist[i].Name %></h4><br>
 <form id="form2">
     <div class="box1">
-          
+    <h3 style="text-align: center;color: black;"><%= newlist[i].SNo %></h3>
     <label for="fname"><b>First name:</b>    <%= newlist[i].Name %></label><br>
     <label for="lname"><b>Mobile:</b>     <%= newlist[i].Mobile %></label><br>
     <label for="fname"><b>Date:</b>    <%= newlist[i].Date %></label><br>
@@ -75,7 +75,7 @@
           </tr>
           <tr>
               <td>
-                  <%= newlist[i].SNo %>
+                  
               </td>
               <td>
                   <%= newlist[i].Items %>
@@ -93,7 +93,7 @@
           
       </table>   
       
-    <a href="/delete/<%=newlist[i].Mobile %>/<%=newlist[i].Name %>">Delete</a>
+    <a href="/delete/<%=newlist[i].Mobile %>/<%=newlist[i].Name %>" style="color:white" >Delete</a>
       
       </div>   
       <% } %>
