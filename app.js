@@ -207,6 +207,12 @@ passport.deserializeUser(User.deserializeUser());
    })
   })
 
+app.get("/all",function(req,res){
+  User.find({},function(err,data){
+    res.render("all",{newlist:data})
+  })
+})
+
 const port=process.env.PORT || 3000
 
 app.listen(port,function(){
