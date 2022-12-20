@@ -1,6 +1,11 @@
 
+input{
+  padding: 5px;
+  
+  
+}
 body {
-    background-color: #2F3C7E;
+    background-color: #0B0C10;
     font-family: verdana,sans-serif;
     
   }
@@ -18,7 +23,7 @@ body {
   }
 
   .box1,.table{
-    background-color: #FBEAEB;
+    background-color: rgb(252, 230, 230);
     margin-bottom:10px
 
   }
@@ -33,13 +38,13 @@ body {
 
 
 tbody tr:nth-child(even) {
-  background-color: #eccbdd;
+  background-color: #C5C6C7;
 }
 
 
 
 table {
-  background-color: #ff33cc;
+  background-color: #C5C6C7;
 }
 
 .form2table{
@@ -105,6 +110,11 @@ input{
   background-color: #eccbdd;
   padding: 25px;
 }
+
+
+
+.navbar navbar-expand-lg navbar-light bg-light{
+box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);}
 
 
 
