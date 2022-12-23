@@ -128,8 +128,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
   app.post("/", function(req, res){
-    number=number+1
-    console.log(number)
     const user=new User({
       SNo:req.body.SNo,
         Name: req.body.Name,
@@ -153,7 +151,11 @@ passport.deserializeUser(User.deserializeUser());
 
     })
     user.save()
-    res.redirect('/')
+    setTimeout(()=>{
+      res.redirect('/')
+    },2000)
+    
+    
   })
 
   app.get("/about",function(req,res){
@@ -218,5 +220,7 @@ const port=process.env.PORT || 3000
 app.listen(port,function(){
     console.log("connected to the port 3000")
 })
+
+
 
 
