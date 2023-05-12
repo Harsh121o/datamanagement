@@ -100,9 +100,7 @@ th, td {
   }
 }
 
-.rotate-image {
-  animation: rotate 5s linear infinite;
-}
+
 
 @keyframes zoom-in {
   0% {
