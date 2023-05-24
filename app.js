@@ -121,6 +121,17 @@ app.get("/sales", function (req, res) {
   res.render("sales")
 });
 
+app.get("/all", function (req, res) {
+  User.find({}, function (err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("list", { newlist: data });
+    }
+  });
+});
+
+
 app.get("/blog/care-tips-for-glasses", function (req, res) {
   res.render("blog2")
 });
