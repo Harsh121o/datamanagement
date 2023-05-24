@@ -131,6 +131,55 @@ app.get("/all", function (req, res) {
   });
 });
 
+app.get("/posts/:topic/:name",function(req,res){  
+  User.find({Mobile:req.params.topic,Name:req.params.name},function(err,data){
+    if(err){
+      res.render("incorrect")
+    }
+    else{
+      res.render("form2",{newlist:data,number:number})
+    }
+    
+  })
+})
+
+app.get("/search",function(req,res){
+  res.render("search")
+})
+
+
+app.get("/list",function(req,res){
+  res.render("list")
+})
+
+app.post("/search", function(req, res){
+  
+  const search= req.body.Search
+  User.find(  { Mobile:search } ,function(err,data){
+    res.render("list",{newlist:data})
+  }) 
+})
+app.post("/search2", function(req, res){
+  
+  const search= req.body.Search
+   
+  User.find({Name:{$regex:search,$options:'$i'}},function(err,data){
+    res.render("list",{newlist:data})
+  })
+})
+
+
+app.get("/delete/:topic/:name", function(req, res){
+ var result=User.deleteOne({ Mobile: req.params.topic,Name:req.params.name },function(err){
+  if(err){
+    console.log(err)
+  }
+  else{
+    res.redirect('/')
+  }
+ })
+})
+
 
 app.get("/blog/care-tips-for-glasses", function (req, res) {
   res.render("blog2")
