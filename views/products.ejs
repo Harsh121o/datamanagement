@@ -1,0 +1,75 @@
+<%- include('partials/header') %>
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="mt-5 mb-5">Our Products</h1>
+
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="/images/frame1.png" class="d-block w-100" alt="Frame 1">
+                            <p>Frame 1</p>
+                            <p>Price: Rs 1000</p>
+                        </div>
+                        <div class="col-md-3">
+                            <img src="/images/frame2.png" class="d-block w-100" alt="Frame 2">
+                            <p>Frame 2</p>
+                            <p>Price: Rs 1200</p>
+                        </div>
+                        <div class="col-md-3">
+                            <img src="/images/frame3.png" class="d-block w-100" alt="Frame 3">
+                            <p>Frame 3</p>
+                            <p>Price: Rs 1400</p>
+                        </div>
+                        <div class="col-md-3">
+                            <img src="/images/frame4.png" class="d-block w-100" alt="Frame 4">
+                            <p>Frame 4</p>
+                            <p>Price: Rs 1600</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="/images/frame5.png" class="d-block w-100" alt="Frame 5">
+                            <p>Frame 5</p>
+                            <p>Price: Rs 1800</p>
+                        </div>
+                        <div class="col-md-3">
+                            <img src="/images/frame6.png" class="d-block w-100" alt="Frame 6">
+                            <p>Frame 6</p>
+                            <p>Price: Rs 2000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <%- include('partials/footer') %>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>

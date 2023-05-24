@@ -6,6 +6,11 @@
   --white: #FFFFFF;
   --black: #000000;
 }
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
 
 body {
   font-family: 'Poppins', sans-serif;
@@ -129,9 +134,22 @@ th, td {
   }
 }
 
-.navbar-brand {
-  animation: bounce 2s ease infinite;
+.footer {
+  margin-top: auto; 
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: relative;  /* Ensures the footer is always at the bottom */
 }
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  margin: 0 20px;
+}
+
+
 
 
 
