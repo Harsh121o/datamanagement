@@ -59,6 +59,39 @@ const interestSchema = new mongoose.Schema({
   Mobile: Number,
 });
 
+
+app.post("/", function(req, res){
+  const user=new User({
+    SNo:req.body.SNo,
+      Name: req.body.Name,
+      Mobile:req.body.Mobile,
+      Address: req.body.Address,
+      Date: req.body.date,
+      Right_SPH: req.body.Right_SPH,
+      Right_CYL: req.body.Right_CYL,
+      Right_AXIS: req.body.Right_AXIS,
+      Right_ADD: req.body.Right_ADD,
+      Right_VISION: req.body.Right_VISION,
+      Left_SPH: req.body.Left_SPH,
+      Left_CYL: req.body.Left_CYL,
+      Left_Axis: req.body.Left_Axis,
+      Left_ADD: req.body.Left_ADD,
+      Left_VISION: req.body.Left_VISION,
+      Items:req.body.Items,
+      Description:req.body.Description,
+      Qty:req.body.Qty,
+      Total:req.body.Total
+
+  })
+  user.save()
+  setTimeout(()=>{
+    res.redirect('/')
+  },2000)
+  
+  
+})
+
+
 const Interest = mongoose.model("Interest", interestSchema);
 
 const imagesschema = new mongoose.Schema({
