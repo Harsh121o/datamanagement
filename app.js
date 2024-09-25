@@ -6,6 +6,7 @@ const path = require('path');
 const mongoose = require("mongoose");
 const multer = require('multer');
 const session = require("express-session");
+
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const fs = require('fs');
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
 
